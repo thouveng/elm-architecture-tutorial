@@ -18,11 +18,13 @@ init =
 
 -- UPDATE
 
-type Msg = Increment | Decrement
+type Msg = Reset | Increment | Decrement
 
 update : Msg -> Model -> Model
 update msg model =
   case msg of
+    Reset ->
+      0
     Increment ->
       model + 1
 
@@ -36,6 +38,7 @@ view : Model -> Html Msg
 view model =
   div []
     [ button [ onClick Decrement ] [ text "-" ]
-    , div [] [ text (String.fromInt model) ]
     , button [ onClick Increment ] [ text "+" ]
+    , div [] [ text (String.fromInt model) ]
+    , button [ onClick Reset ] [ text "Reset" ]
     ]
